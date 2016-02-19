@@ -3,7 +3,7 @@ import kodu2.Regex;
  
 public class RegexDemo {
     public static void main(String[] args) {
-        Regex r = Regex.repetition(
+        Regex r =  Regex.repetition(
                 Regex.concatenation(
                         Regex.letter('a'),
                         Regex.alternation(

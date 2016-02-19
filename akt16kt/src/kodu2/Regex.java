@@ -16,14 +16,15 @@ public class Regex {
 		// TODO Auto-generated method stub
 
 	}
+	public static Regex regexFinal;
 
 	/**
 	 * @param c
 	 * @return
 	 */
-	public static Object letter(char c) {
+	public static Object letter(Object c) {
 		// TODO Auto-generated method stub
-		return null;
+		return c;
 	}
 
 	/**
@@ -31,52 +32,56 @@ public class Regex {
 	 */
 	public static Object epsilon() {
 		// TODO Auto-generated method stub
-		return null;
+		return 'ε';
+	}
+
+
+	/**
+	 * @return
+	 */
+	public boolean matchesEmptyWord() {
+		boolean isEmpty = false;
+		return isEmpty;
 	}
 
 	/**
 	 * @return
 	 */
-	public char[] matchesEmptyWord() {
+	public boolean matchesInfinitelyManyWords() {
 		// TODO Auto-generated method stub
-		return null;
+		return true;
 	}
 
 	/**
-	 * @return
-	 */
-	public char[] matchesInfinitelyManyWords() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * @param letter
+	 * @param c
 	 * @param epsilon
 	 * @return
 	 */
-	public static Object alternation(Object letter, Object epsilon) {
-		// TODO Auto-generated method stub
-		return null;
+	public static Object alternation(Object c, Object d) {
+		return "("+c+"|"+d;
 	}
 
 	/**
-	 * @param letter
-	 * @param alternation
+	 * @param c
+	 * @param d
 	 * @return
 	 */
-	public static Object concatenation(Object letter, Object alternation) {
+	public static Object concatenation(Object c, Object d) {
 		// TODO Auto-generated method stub
-		return null;
+		return "("+regexFinal+")*";
 	}
 
 	/**
+	 * @param object
 	 * @param concatenation
 	 * @return
 	 */
-	public static Regex repetition(Object concatenation) {
+	public static Regex repetition(Object object) {
 		// TODO Auto-generated method stub
-		return null;
+		return regexFinal;
+	}
+	public String toString() {
+	return regexFinal.toString();
 	}
 
 }

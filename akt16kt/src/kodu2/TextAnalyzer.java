@@ -30,23 +30,18 @@ public class TextAnalyzer {
 			MatchNamesAndNumbers(lines[i]);
 		}
 	}
-	public boolean anonymize() {
+	public Object anonymize() {
 			System.out.println(anonymized);
-		return true;
+		return null;
 	}
 
 	/**
 	 * @param string
 	 */
 	private void MatchNamesAndNumbers(String string) {
-		try {
 		anonymized = string;
-		Pattern pattern43 = Pattern.compile("\\d{4}\\s\\d{3}");
-		Pattern pattern44 = Pattern.compile("\\d{4}\\s\\d{4}");
-		Pattern pattern8 = Pattern.compile("\\d{8}");
 		Pattern namesAndNumbersPattern = Pattern.compile("[A-Z][a-z]* [A-Z][a-z]*|\\d{3,4}\\s\\d{3,4}|\\d{4,8}");
 		int i = 0;
-		int j = 0;
 		Matcher names = null;
 		ArrayList<String> info = new ArrayList<String>();
 		//System.out.println(info);
@@ -54,7 +49,6 @@ public class TextAnalyzer {
 		lines = string.split("\n");
 		//names = lines.split("\\s[a-z]*");
 		for (i = 0;i<lines.length;i++) {
-			System.out.println("i väärtus "+i);
 			lines[i] = lines[i].replace(".", "");
 			names = namesAndNumbersPattern.matcher(lines[i]);
 			while (names.find()) {
@@ -71,7 +65,6 @@ public class TextAnalyzer {
 				}
 				//System.out.println(Arrays.asList(info));
 			}
-			System.out.println("While lõppes");
 
 		}
 		String[] abi = new String[ info.size() ];
@@ -80,9 +73,6 @@ public class TextAnalyzer {
 			namesAndNumbers.put(abi[i], abi[i+1]);
 		}
 		//System.out.println(namesAndNumbers);
-		}catch (Exception e) {
-			System.out.print(e.getStackTrace());
-		}
 	}
 
 
