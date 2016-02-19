@@ -3,14 +3,11 @@
  */
 package kodu2;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author harri
@@ -30,11 +27,10 @@ public class TextAnalyzer {
 			MatchNamesAndNumbers(lines[i]);
 		}
 	}
-	public Object anonymize() {
-			System.out.println(anonymized);
-		return null;
+	public String anonymize() {
+		return anonymized;
 	}
-
+	
 	/**
 	 * @param string
 	 */
@@ -44,15 +40,9 @@ public class TextAnalyzer {
 		int i = 0;
 		Matcher names = null;
 		ArrayList<String> info = new ArrayList<String>();
-		//System.out.println(info);
-		String[] lines;
-		lines = string.split("\n");
-		//names = lines.split("\\s[a-z]*");
-		for (i = 0;i<lines.length;i++) {
-			lines[i] = lines[i].replace(".", "");
-			names = namesAndNumbersPattern.matcher(lines[i]);
+		
+			names = namesAndNumbersPattern.matcher(string);
 			while (names.find()) {
-				//System.out.println(names.group());
 				if (names.group().matches("\\d+ \\d+")){
 					info.add(names.group().replaceAll("\\s+",""));
 					anonymized = anonymized.replace(names.group(), "<telefoninumber>");
@@ -63,19 +53,14 @@ public class TextAnalyzer {
 					anonymized = anonymized.replace(names.group(0), "<nimi>");
 					info.add(names.group());
 				}
-				//System.out.println(Arrays.asList(info));
 			}
 
-		}
 		String[] abi = new String[ info.size() ];
 		info.toArray(abi);
 		for (i = 0;i<info.size();i = i+2) {
 			namesAndNumbers.put(abi[i], abi[i+1]);
 		}
-		//System.out.println(namesAndNumbers);
 	}
-
-
 	/**
 	 * @param args
 	 */
@@ -83,11 +68,6 @@ public class TextAnalyzer {
 		// TODO Auto-generated method stub
 
 	}
-
-	/**
-	 * @return 
-	 * @return
-	 */
 	public  Map<String,String> getPhoneNumbers() {
 		return namesAndNumbers;
 	}

@@ -12,7 +12,8 @@ public class RegexDemo {
                                 )
                         )
                 );
- 
+        	//Regex r2 = Regex.epsilon();
+        //System.out.println(r2.toString());
         System.out.println(r.toString()); // väljastab (a(b|ε))*
         System.out.println(r.matchesEmptyWord()); // väljastab true
         System.out.println(r.matchesInfinitelyManyWords()); // väljastab true

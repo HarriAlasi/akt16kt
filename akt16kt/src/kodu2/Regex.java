@@ -7,30 +7,42 @@ package kodu2;
  * @author harri
  *
  */
+import java.util.regex.Pattern;
 public class Regex {
+	public static Regex regexFinal = new Regex();
+	/**
+	 * @param string
+	 */
+	Pattern regex;
+	static String regex1 = "";
+
 
 	/**
 	 * @param args
 	 */
+	public Regex() {
+
+		regex = Pattern.compile("");
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 	}
-	public static Regex regexFinal;
+
 
 	/**
 	 * @param c
+	 * @return 
 	 * @return
 	 */
-	public static Object letter(Object c) {
-		// TODO Auto-generated method stub
+	public static  char letter(char c) {
 		return c;
 	}
 
 	/**
 	 * @return
 	 */
-	public static Object epsilon() {
+	public static char epsilon() {
 		// TODO Auto-generated method stub
 		return 'ε';
 	}
@@ -40,8 +52,11 @@ public class Regex {
 	 * @return
 	 */
 	public boolean matchesEmptyWord() {
-		boolean isEmpty = false;
-		return isEmpty;
+		boolean val = false;
+		if (regexFinal.toString().contains("*")) {
+			val = true;
+		}
+		return val;
 	}
 
 	/**
@@ -58,7 +73,8 @@ public class Regex {
 	 * @return
 	 */
 	public static Object alternation(Object c, Object d) {
-		return "("+c+"|"+d;
+		regex1 = "("+c+"|"+d+")";
+		return Pattern.compile("("+c+"|"+d+")");
 	}
 
 	/**
@@ -68,7 +84,8 @@ public class Regex {
 	 */
 	public static Object concatenation(Object c, Object d) {
 		// TODO Auto-generated method stub
-		return "("+regexFinal+")*";
+		regex1 = ""+c+d;
+		return Pattern.compile(""+c+d);
 	}
 
 	/**
@@ -78,10 +95,14 @@ public class Regex {
 	 */
 	public static Regex repetition(Object object) {
 		// TODO Auto-generated method stub
+		regex1 = "("+regex1+")*";
 		return regexFinal;
 	}
+	/**
+	 * @return
+	 */
 	public String toString() {
-	return regexFinal.toString();
+	return regex1;
 	}
 
 }
