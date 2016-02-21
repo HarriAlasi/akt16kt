@@ -3,7 +3,7 @@ package kodu2;
 import java.text.ParseException;
 
 /**
- * Regulaaravaldise parsimine. Selle kohta rÃ¤Ã¤gime veel tulevikus...
+ * Regulaaravaldise parsimine. Selle kohta rÃƒÂ¤ÃƒÂ¤gime veel tulevikus...
  *
  * @author Vesal Vojdani &lt;vesal@cs.ut.ee&gt;
  */

@@ -20,9 +20,9 @@ public class TextAnalyzer {
 	 * @param string
 	 */
 	String[] lines;
-	String anonymized;
+	String anonymized = "";
 	public TextAnalyzer(String string) {
-		lines = string.split(System.getProperty("line.separator"));
+		lines = string.split("\n");
 		for (int i = 0; i < lines.length;i++) {
 			MatchNamesAndNumbers(lines[i]);
 		}
@@ -35,7 +35,7 @@ public class TextAnalyzer {
 	 * @param string
 	 */
 	private void MatchNamesAndNumbers(String string) {
-		anonymized = string;
+		anonymized += string+"\n";
 		Pattern namesAndNumbersPattern = Pattern.compile("[A-Z][a-z]* [A-Z][a-z]*|\\d{3,4}\\s\\d{3,4}|\\d{4,8}");
 		int i = 0;
 		Matcher names = null;

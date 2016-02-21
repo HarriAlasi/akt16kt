@@ -35,8 +35,8 @@ public class Regex {
 	 * @return 
 	 * @return
 	 */
-	public static  char letter(char c) {
-		return c;
+	public static  Regex letter(char c) {
+		return Regex.;
 	}
 
 	/**
