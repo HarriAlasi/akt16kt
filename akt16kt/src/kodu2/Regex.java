@@ -2,18 +2,12 @@
  * 
  */
 package kodu2;
-
-/**
- * @author harri
- *
- */
-import java.util.regex.Pattern;
 public class Regex {
 	public static Regex regexFinal = new Regex();
 	/**
 	 * @param string
 	 */
-	Pattern regex;
+	static Regex regex;
 	static String regex1 = "";
 
 
@@ -22,7 +16,6 @@ public class Regex {
 	 */
 	public Regex() {
 
-		regex = Pattern.compile("");
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -36,15 +29,16 @@ public class Regex {
 	 * @return
 	 */
 	public static  Regex letter(char c) {
-		return Regex.;
+		regex1 = ""+c;
+		return regexFinal;
 	}
 
 	/**
 	 * @return
 	 */
-	public static char epsilon() {
-		// TODO Auto-generated method stub
-		return 'ε';
+	public static Regex epsilon() {
+		regex1 = "ε";
+		return regexFinal;
 	}
 
 
@@ -72,9 +66,10 @@ public class Regex {
 	 * @param epsilon
 	 * @return
 	 */
-	public static Object alternation(Object c, Object d) {
+	public static Regex alternation(Object c, Object d) {
 		regex1 = "("+c+"|"+d+")";
-		return Pattern.compile("("+c+"|"+d+")");
+		System.out.println("Praegune regex peale alterationit" + regex1);
+		return regexFinal;
 	}
 
 	/**
@@ -82,10 +77,11 @@ public class Regex {
 	 * @param d
 	 * @return
 	 */
-	public static Object concatenation(Object c, Object d) {
+	public static Regex concatenation(Object c, Object d) {
 		// TODO Auto-generated method stub
 		regex1 = ""+c+d;
-		return Pattern.compile(""+c+d);
+		System.out.println("Praegune regex peale concatenationit" + regex1);
+		return regexFinal;
 	}
 
 	/**
@@ -96,6 +92,7 @@ public class Regex {
 	public static Regex repetition(Object object) {
 		// TODO Auto-generated method stub
 		regex1 = "("+regex1+")*";
+		System.out.println("Praegune regex peale repetitionit" + regex1);
 		return regexFinal;
 	}
 	/**
