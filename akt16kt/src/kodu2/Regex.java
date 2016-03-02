@@ -2,15 +2,25 @@
  * 
  */
 package kodu2;
+
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Regex {
 	public static Regex regexFinal = new Regex();
 	/**
 	 * @param string
 	 */
 	static Regex regex;
+	static String letter;
+	static String EPS = "\u03B5";
 	static String regex1 = "";
-
-
+	private static Regex regexEPS;
+	private static Regex regexLetter;
+	private static String alt1;
+	private static String alt2;
+	static ArrayList<String> letters = new ArrayList<String>();
 	/**
 	 * @param args
 	 */
@@ -29,16 +39,19 @@ public class Regex {
 	 * @return
 	 */
 	public static  Regex letter(char c) {
-		regex1 = ""+c;
-		return regexFinal;
+		letters.add(c+"");
+		//System.out.println(c);
+		//System.out.println(letters);
+		return regexLetter;
 	}
 
 	/**
 	 * @return
 	 */
 	public static Regex epsilon() {
-		regex1 = "ε";
-		return regexFinal;
+		letters.add(EPS);
+		//System.out.println(""\u03B5"");
+		return regexEPS;
 	}
 
 
@@ -47,7 +60,13 @@ public class Regex {
 	 */
 	public boolean matchesEmptyWord() {
 		boolean val = false;
-		if (regexFinal.toString().contains("*")) {
+		//System.out.println(regexFinal.toString()+" on regexFinal");
+		if (regexFinal.toString().length()==2 && regexFinal.toString().endsWith("*")|| 
+			regexFinal.toString().endsWith(")*") && regexFinal.toString().startsWith("(")||
+			regexFinal.toString().equals(EPS) ||
+			regexFinal.toString().startsWith(EPS+"|") || 
+			regexFinal.toString().endsWith("|"+EPS))
+		{
 			val = true;
 		}
 		return val;
@@ -66,9 +85,19 @@ public class Regex {
 	 * @param epsilon
 	 * @return
 	 */
-	public static Regex alternation(Object c, Object d) {
-		regex1 = "("+c+"|"+d+")";
-		System.out.println("Praegune regex peale alterationit" + regex1);
+	static int i;
+	public static Regex alternation(Regex c, Regex d) {
+		if (c == regexLetter || c == regexEPS){
+			//System.out.println(c);
+			alt1 = letters.get(letters.indexOf(c+""));
+			}
+		if (d == regexLetter || d == regexEPS){
+			i = letters.indexOf(d);
+			alt2 = letters.get(i);	
+		}
+		
+		regex1 = "("+alt1+"|"+alt2+")";
+	//	System.out.println("Praegune regex peale alterationit" + regex1);
 		return regexFinal;
 	}
 
@@ -80,7 +109,7 @@ public class Regex {
 	public static Regex concatenation(Object c, Object d) {
 		// TODO Auto-generated method stub
 		regex1 = ""+c+d;
-		System.out.println("Praegune regex peale concatenationit" + regex1);
+		//System.out.println("Praegune regex peale concatenationit" + regex1);
 		return regexFinal;
 	}
 
@@ -92,7 +121,7 @@ public class Regex {
 	public static Regex repetition(Object object) {
 		// TODO Auto-generated method stub
 		regex1 = "("+regex1+")*";
-		System.out.println("Praegune regex peale repetitionit" + regex1);
+		//System.out.println("Praegune regex peale repetitionit" + regex1);
 		return regexFinal;
 	}
 	/**
@@ -101,5 +130,7 @@ public class Regex {
 	public String toString() {
 	return regex1;
 	}
-
+	/*public String toString(String string) {
+	return string;
+	}*/
 }
